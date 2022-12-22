@@ -3,32 +3,30 @@
 // которые различаются в этих строках и также считать их количество.
 // Функция должна вернуть объект с 2мя полями amount и array
 
-interface Diff {
+interface GetDiffResult {
   amount: number;
   array: string[];
 }
 
 function getDiff(firstString: string, secondString: string): Diff {
-  const firstArray: string[] = Array.from(firstString);
-  const secondArray: string[] = Array.from(secondString);
+  const firstArray: string[] = [...firstString];
+  const secondArray: string[] = [...secondString];
 
-    const result = firstArray
-      .filter((letter) => !secondArray.includes(letter))
-      .concat(secondArray.filter((letter) => !firstArray.includes(letter)));
+  const result = firstArray
+    .filter((letter) => !secondArray.includes(letter))
+    .concat(secondArray.filter((letter) => !firstArray.includes(letter)));
 
-      return {
-          amount: result.length,
-          array: result
-      }
+  return {
+    amount: result.length,
+    array: result,
+  };
 
-    // const a = firstArray.filter((letter) => !secondArray.includes(letter)); // letters in the 1st arr but not the 2nd
-    // const b = secondArray.filter((letter) => !firstArray.includes(letter)); // letters in the 2nd but not in the 1st
-    // const c = a.concat(b);
+  // const a = firstArray.filter((letter) => !secondArray.includes(letter)); // letters in the 1st arr but not the 2nd
+  // const b = secondArray.filter((letter) => !firstArray.includes(letter)); // letters in the 2nd but not in the 1st
+  // const c = a.concat(b);
 
-    // console.log(a);
-    // console.log(b);
-  
-  
+  // console.log(a);
+  // console.log(b);
 }
 
 console.log(getDiff("abc", "abcd")); // { amount: 1, array: ['d'] }
